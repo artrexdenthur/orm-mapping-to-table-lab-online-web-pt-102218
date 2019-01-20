@@ -16,7 +16,7 @@ class Student
                             CREATE TABLE IF NOT EXISTS students (
                               id INTEGER PRIMARY KEY,
                               name TEXT,
-                              grade INTEGER);
+                              grade TEXT);
                           SQL
   end
   
@@ -30,6 +30,7 @@ class Student
                 VALUES (?, ?)
               SQL
     DB[:conn].execute(insert, self.name, self.grade)
+    @id = DB[:conn].execute("")
   end
   
   def self.create
