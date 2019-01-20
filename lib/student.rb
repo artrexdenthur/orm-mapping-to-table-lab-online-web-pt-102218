@@ -12,6 +12,7 @@ class Student
   end
   
   def self.create_table
-    DB[:conn].execute('../db/students.db')
+    DB[:conn].execute << -EOF
+                          CREATE 
   
 end
