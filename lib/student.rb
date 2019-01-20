@@ -13,6 +13,14 @@ class Student
   
   def self.create_table
     DB[:conn].execute << -EOF
-                          CREATE 
+                            CREATE TABLE IF NOT EXISTS students (
+                              id INTEGER PRIMARY KEY,
+                              name TEXT,
+                              grade INTEGER);
+                          EOF
+  end
+  
+  def self.drop_table
+    DB[:conn].execute("DROP TABLE students;")
   
 end
