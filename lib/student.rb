@@ -12,12 +12,12 @@ class Student
   end
   
   def self.create_table
-    DB[:conn].execute << -EOF
+    DB[:conn].execute << -SQL
                             CREATE TABLE IF NOT EXISTS students (
                               id INTEGER PRIMARY KEY,
                               name TEXT,
                               grade INTEGER);
-                          EOF
+                          SQL
   end
   
   def self.drop_table
@@ -25,7 +25,11 @@ class Student
   end
   
   def save
-    DB[:conn].prepare("INSERT INTO students(name, grade) VALUES (?, ?)")
+    insert = -SQL
+                INSERT INTO students(name, grade)
+                VALUES (?, ?)
+              SQL
+    DB[:conn].execute(insert, self.name, self.grade)
   end
   
   def self.create
