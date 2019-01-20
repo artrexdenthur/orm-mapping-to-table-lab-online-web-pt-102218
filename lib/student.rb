@@ -36,6 +36,7 @@ class Student
   def self.create(att_hash)
     new_student = Student.new(att_hash[:name], att_hash[:grade])
     new_student.save
+    new_student
   end
   
 end
